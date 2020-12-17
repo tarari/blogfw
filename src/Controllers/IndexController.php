@@ -13,12 +13,10 @@
         
         public function index(){
             $db=$this->getDB();
-            $data=$db->selectAll('users');
-            // uso de funciones declaradas en el modelo 
-            // y definidas en la clase abstracta
-            // $stmt=$this->query($db,"SELECT * FROM users ",null);
+            $data=$db->selectAll('posts');
+            
             $user=$this->session->get('user');
-            $dataview=[ 'title'=>'Todo','user'=>$user,
+            $dataview=[ 'title'=>'Bloggy','user'=>$user,
                          'data'=>$data];
             $this->render($dataview);
         }

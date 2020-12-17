@@ -27,7 +27,7 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
     <div class="inner">
-      <h3 class="masthead-brand">Td-list</h3>
+      <h3 class="masthead-brand">Bloggy-list</h3>
       <nav class="nav nav-masthead justify-content-center">
         <a class="nav-link active" href="<?=BASE;?>">Home</a>
         <?php if(isset($user)){ ?>
