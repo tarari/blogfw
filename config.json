@@ -5,8 +5,8 @@
         "dbname":"prouf1",
         "dbuser":"prouf1",
         "dbpass":"linuxlinux",
-        "web":"/",
-        "root":"/"
+        "web":"/"
+       
     },
     "conf_pro":{
         "driver":"mysql",
@@ -14,8 +14,7 @@
         "dbname":"toni_prouf1",
         "dbuser":"toni_prouf1",
         "dbpass":"linuxlinux",
-        "web":"/m7/todofw/",
-        "root":"/m7/todofw/"
+        "web":"/m7/todofw/"
 
     }
 }
