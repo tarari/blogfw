@@ -2,19 +2,20 @@
     "conf_dev":{
         "driver":"mysql",
         "dbhost":"127.0.0.1",
-        "dbname":"blogfw",
-        "dbuser":"blogfw",
+        "dbname":"prouf1",
+        "dbuser":"prouf1",
         "dbpass":"linuxlinux",
-        "web":"/"
-        
+        "web":"/",
+        "root":"/"
     },
     "conf_pro":{
         "driver":"mysql",
         "dbhost":"toni.cesnuria.com",
-        "dbname":"toni_blogfw",
-        "dbuser":"toni_blogfw",
+        "dbname":"toni_prouf1",
+        "dbuser":"toni_prouf1",
         "dbpass":"linuxlinux",
-        "web":"/m7/blog/"
-        
+        "web":"/m7/todofw/",
+        "root":"/m7/todofw/"
+
     }
 }

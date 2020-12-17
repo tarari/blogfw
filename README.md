@@ -1,4 +1,4 @@
-# Aplicació basada en framework x2app
+# Aplicació basada en framework xapp
 
 Es tracta d'una app basa en un framework MVC i OOP en PHP
 
@@ -27,12 +27,12 @@ public/ incorpora les característiques estàtiques i de front-end de l'aplicaci
 ## La navegació en l'app
 
 ```
-welcome --> login  ----> dashboard ---> add post
-        --> register               ---> remove post
-                                   ---> edit post
+welcome --> login  ----> dashboard ---> add task
+        --> register               ---> complete task
+                                   ---> remove task
+                                   ---> edit task
                                    ---> profile
-                             
-Controllers:  USERCONTROLLER          USER/POSTCONTROLLER
+Controllers:  USERCONTROLLER          USER/TASKCONTROLLER
 
 ```
 
@@ -43,8 +43,3 @@ Cal exportar l'SQL de la base dades de l'aplicació:
 ```
 php start.php fitxer.sql
 ```
-
-```
-composer update
-```
-

@@ -5,26 +5,27 @@
     use App\Request;
     use App\Session;
 
-    class PostController extends Controller{
+    class TaskController extends Controller{
 
         public function __construct(Request $request,Session $session){
             parent::__construct($request,$session);
         }
 
         public function index(){
-                //posts list for user
+                //task list for user
 
-                //$post=$this->selectAll();
+                //$tasks=$this->selectAll();
                 $this->render();
         }
 
         public function new(){
             $user=$this->session->get('user');
-            $this->render(['user'=>$user],'newpost');
+            $this->render(['user'=>$user],'newtask');
         }
 
         public function add(){
-            // data from post
+            $description=filter_input(INPUT_POST,'description',FILTER_SANITIZE_STRING);
+            $datetime=filter_input(INPUT_POST,'due_date',FILTER_SANITIZE_SPECIAL_CHARS);
             $id=$this->session->get('user')['id'];
             $db=$this->getDB();
             if($db->insert('tasks',['description'=>$description,'user'=>$id,'due_date'=>$datetime])){
