@@ -4,7 +4,7 @@
     require __DIR__.'/vendor/autoload.php';
     
     use App\App;
-    App::init();
+    $conf=App::init();
 
     define('DSN',$conf['driver'].':host='.$conf['dbhost'].';dbname='.$conf['dbname']);
     define('USR',$conf['dbuser']);
