@@ -10,7 +10,7 @@ namespace App;
         static protected $req;
 
         private static function env(){
-            if(!isset($_SERVER['SERVE_NAME'])){
+            if(!isset($_SERVER['SERVER_NAME'])){
                 return 'dev';
             }
             $ipAddress=gethostbyname($_SERVER['SERVER_NAME']);
