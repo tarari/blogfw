@@ -4,7 +4,7 @@
      <?php if(isset($user)){ ?>
     <main class="container">
     <section>
-        <h3>Todo list <?= $user['uname'];?></h3>
+        <h3>Bloggy list <?= $user['username'];?></h3>
         <div class="col my-auto">
         <table id="mytable" class="table">
             <tr>
@@ -38,7 +38,7 @@
         </div>
         </section>
         <section>
-        <a href="<?=BASE;?>task/new"><button class="btn btn-secondary"><strong>+</strong></button></a>
+        <a href="<?=BASE;?>post/new"><button class="btn btn-secondary"><strong>+</strong></button></a>
         </section>
         <section>
         <br>

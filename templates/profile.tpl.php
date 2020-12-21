@@ -5,7 +5,7 @@
 <div class="row">
  <?php if($user){ ?>
    <section class="my-auto">
-    <h1>Username: <?= $user['uname']; ?></h1>
+    <h1>Username: <?= $user['username']; ?></h1>
     <h3>Email:<?= $user['email']; ?></h3>
    </section>
    </div>

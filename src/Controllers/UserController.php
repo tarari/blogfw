@@ -24,8 +24,7 @@
          */
         function dashboard(){  
             $user=$this->session->get('user');
-            $data=$this->getDB()->selectWhereWithJoin('tasks','users',['tasks.id','tasks.description',
-    'tasks.due_date'],'user','id',['users.uname',$user['uname']]);
+            $data=$this->getDB()->selectWhereWithJoin('posts','users',['posts.id','posts.title'],'user','id',['users.username',$user['username']]);
             $this->render(['user'=>$user,'data'=>$data],'dashboard');
         }
         public function register(){
@@ -53,13 +52,16 @@
             
            
                 $user=$this->auth($email,$pass);
+                
                 if ($user){
                     $this->session->set('user',$user);
                     //si usuari valid
                     if(isset($_POST['remember-me'])&&($_POST['remember-me']=='on'||$_POST['remember-me']=='1' )&& !isset($_COOKIE['remember'])){
                         $hour = time()+3600 *24 * 30;
                         $path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
-                        setcookie('uname', $user['uname'], $hour,$path);
+                        var_dump($path);
+                        die;
+                        setcookie('username', $user['username'], $hour,$path);
                         setcookie('email', $user['email'], $hour,$path);
                         setcookie('active', 1, $hour,$path);          
                     }
@@ -74,24 +76,26 @@
         
         public function reg(){
            
-
+           
             if(isset($_POST['email'])&&!empty($_POST['email'])&&
-            isset($_POST['uname'])&&!empty($_POST['uname'])&&
+            isset($_POST['username'])&&!empty($_POST['username'])&&
             isset($_POST['passw'])&&!empty($_POST['passw']))
             {
                 
                 $email=filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
                 $passw=filter_input(INPUT_POST,'passw',FILTER_SANITIZE_STRING);
                 $passw2=filter_input(INPUT_POST,'passw2',FILTER_SANITIZE_STRING);
-                $uname=filter_input(INPUT_POST,'uname',FILTER_SANITIZE_STRING);
+                $username=filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
+                
                 if ($passw===$passw2){
                     
                     $passw=password_hash($passw,PASSWORD_BCRYPT,['cost'=>4]);
                     $data=[
                         'email'=>$email,
-                        'uname'=>$uname,
-                        'passw'=>$passw,
-                        'role'=>2
+                        'username'=>$username,
+                        'passwd'=>$passw,
+                        'role'=>2,
+                        'createdAt'=>date('Y-m-d H:i:s')
                     ];
                     
                     // insert en db
@@ -113,6 +117,7 @@
          */
         private function auth($email,$pass)
         {
+            
             try{   
                 $db=$this->getDB();
                 $stmt=$db->prepare('SELECT * FROM users WHERE email=:email LIMIT 1');
@@ -122,7 +127,7 @@
                 
                 if($count==1){       
                     $user=$row[0];
-                    $res=password_verify($pass,$user['passw']);
+                    $res=password_verify($pass,$user['passwd']);
                 
                     if ($res){
                         return $user;

@@ -8,8 +8,8 @@
     <div class="card">
     <div class="card-header">Sign in:</div>
     <div class="card-body">
-    <form class="form" method="POST" action="<?= BASE;?>user/log">  
-        <div class="input-group form-group">
+    <form class="was-validated" method="POST" action="<?= BASE;?>user/log">  
+        <div class="form-group">
         <label for="email">Email:
             <input type="text" class="form-control" name="email" id="email" placeholder="email" value="<?php 
             if (isset($_COOKIE['active'])&& isset($_COOKIE['email'])){
@@ -17,7 +17,7 @@
             }
             ?>"></label>
         </div>
-        <div class="input-group form-group">
+        <div class="form-group">
         <label for="passw">Password:
             <input type="password"  class="form-control" id="passw" name="passw" placeholder="Password">
             </label>

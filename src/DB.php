@@ -37,7 +37,8 @@
                 
                     try{
                         $stmt=self::$instance->prepare($sql);
-    
+                        
+                        
                         $stmt->execute($values);
                     }catch(\PDOException $e){
                         echo $e->getMessage();

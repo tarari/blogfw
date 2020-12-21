@@ -2,10 +2,11 @@
     namespace App\Controllers;
     
     use App\Controller;
+    use App\FormBuilder;
     use App\Request;
     use App\Session;
 
-    class TaskController extends Controller{
+    class PostController extends Controller{
 
         public function __construct(Request $request,Session $session){
             parent::__construct($request,$session);
@@ -20,6 +21,8 @@
 
         public function new(){
             $user=$this->session->get('user');
+            $form=new FormBuilder();
+           // $form->label('username')->input('username');
             $this->render(['user'=>$user],'newtask');
         }
 

@@ -2,8 +2,8 @@
     include 'base.tpl.php';
     ?>
     <main role="main" class="inner cover">
-    <h1 class="cover-heading">Todo task list</h1>
-    <p class="lead">Put your rules!</p>
+    <h1 class="cover-heading">Bloggy</h1>
+    <p class="lead">Write stories!</p>
     <p class="lead">
       <a href="<?=BASE;?>user/dashboard" class="btn btn-lg btn-secondary">More</a>
     </p>

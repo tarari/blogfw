@@ -9,21 +9,21 @@
     <div class="card">
     <div class="card-header">Sign up:</div>
     <div class="card-body">
-    <form class="form" method="POST" action="<?= BASE;?>user/reg">  
-        <div class="input-group form-group">
-        <label for="uname">Username:
-            <input type="text" class="form-control" name="uname" placeholder="uname">
+    <form class="was-validated" method="POST" action="<?= BASE;?>user/reg">  
+        <div class="input-group-sm">
+        <label for="username">Username:
+            <input type="text" class="form-control" name="username" placeholder="username">
         </div>
-        <div class="input-group form-group">
+        <div class="form-group">
         <label for="email">Email:
             <input type="text" class="form-control" name="email" id="email" placeholder="email"></label>
         </div>
-        <div class="input-group form-group">
+        <div class="form-group">
         <label for="passw">Password:
             <input type="password"  class="form-control" id="passw" name="passw" placeholder="Password">
             </label>
         </div>
-        <div class="input-group form-group">
+        <div class="form-group">
         <label for="passw2">Repeat Password:
             <input type="password"  class="form-control" id="passw2" name="passw2" placeholder="Password">
         </label>
