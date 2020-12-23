@@ -14,7 +14,10 @@
             $this->request=$request;
             $this->session=$session;
         }
-
+        
+        function createForm(){    
+            return new FormBuilder;
+        }
         function error($string){
             $this->render(['error'=>$string],'error');
         }

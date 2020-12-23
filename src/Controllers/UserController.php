@@ -15,7 +15,18 @@
        //funcions de render
         function login(){
             $user=$this->session->get('user');
-            $this->render(['user'=>$user],'login');
+            $form=$this->createForm();
+            $form->open(BASE.'user/log')
+                ->label('Email:')
+                ->input('email','email')
+                ->label('Password:')
+                ->input('password','passw')
+                ->submit('Sign')
+                ->close();
+
+            $this->render([
+                'form'=>$form,
+                'user'=>$user],'login');
         }
         /**
          * renders user's dashboard
@@ -28,8 +39,22 @@
             $this->render(['user'=>$user,'data'=>$data],'dashboard');
         }
         public function register(){
+            $form=$this->createForm();
+            $form->open(BASE.'user/reg')
+                ->label('Username:')
+                ->input('text','username')
+                ->label('Email:')
+                ->input('email','email')
+                ->label('Password:')
+                ->input('password','passw')
+                ->label('Repeat password:')
+                ->input('password','passw2')
+                ->submit('Sign up')
+                ->close();
             $user=$this->session->get('user');
-            $this->render(['user'=>$user],'register');
+            $this->render([
+                'form'=>$form,
+                'user'=>$user],'register');
         }
         public function profile(){
             $user=$this->session->get('user');
