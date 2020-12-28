@@ -4,6 +4,7 @@
 
     final class Session {
         protected $id;
+        
         public function __construct() {
     
             $status = session_status();

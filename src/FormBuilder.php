@@ -24,13 +24,13 @@
 
         public function input($type, $name, $value = null) {
             $value=$value??'';
-            $this->elements[] = "<input type=\"$type\" class=\"form-control mb-3\" name=\"$name\" value=\"$value\" />";
+            $this->elements[] = "<input type=\"$type\" class=\"form-control mb-3\" name=\"$name\" id=\"$name\" value=\"$value\" />";
             return $this;
         }   
 
         public function textarea($name, $value =null) {
             $value=$value??'';
-            $this->elements[] = "<textarea name=\"$name\">$value</textarea>";
+            $this->elements[] = "<textarea name=\"$name\" id=\"$name\" >$value</textarea>";
             return $this;
         }
         public function submit($value=null){
@@ -38,7 +38,16 @@
             $this->elements[] ="<button type=\"submit\" class=\"btn btn-primary m-4\">$value</button>";
             return $this;
         }
-
+        public function csrf($value){
+            $this->elements[]="<input type=\"hidden\" name=\"csrf-token\" value=\"$value\">";
+           
+            return $this;
+        }
+        /**
+         * Returns string when form is completed
+         *
+         * @return string
+         */
         public function __toString() {
             return join("\n", $this->elements);
         }   

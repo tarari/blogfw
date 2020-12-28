@@ -21,6 +21,7 @@
                 ->input('email','email')
                 ->label('Password:')
                 ->input('password','passw')
+                ->csrf($this->session->get('csrf-token'))
                 ->submit('Sign')
                 ->close();
 
@@ -49,6 +50,7 @@
                 ->input('password','passw')
                 ->label('Repeat password:')
                 ->input('password','passw2')
+                ->csrf($this->session->get('csrf-token'))
                 ->submit('Sign up')
                 ->close();
             $user=$this->session->get('user');
@@ -69,6 +71,7 @@
         
 
         function log(){
+           if( $this->csrfCheck()){
             if (isset($_POST['email'])&&!empty($_POST['email'])
             &&isset($_POST['passw'])&&!empty($_POST['passw']))
             {
@@ -97,6 +100,8 @@
                 }
             
             }
+           }
+            
         }
         
         public function reg(){

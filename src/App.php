@@ -36,8 +36,14 @@ namespace App;
 
         }
         public static function run(){
-
+            unset($_SESSION);
             $session=new Session();
+            //csrf-token to avoid csrf attacks
+             if (!($session->exists('csrf-token'))){
+             
+                 $session->set('csrf-token',bin2hex(random_bytes(32)));
+             }
+            //routes array
             $routes=self::getRoutes();
            
             
