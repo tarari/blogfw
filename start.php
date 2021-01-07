@@ -5,6 +5,8 @@
     
     use App\App;
     $conf=App::init();
+    var_dump($conf);
+    die;
 
     define('DSN',$conf['driver'].':host='.$conf['dbhost'].';dbname='.$conf['dbname']);
     define('USR',$conf['dbuser']);
