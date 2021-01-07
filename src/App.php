@@ -29,11 +29,17 @@ namespace App;
             $arrayJson=json_decode($jsonStr);
             return $arrayJson;
         }
-        static function init(){
+        static function init($env=null){
+            
             //read configuration
             $config=self::loadConf();
             //determinar env pro o dev
-            $strconf='conf_'.self::env();   
+            if($env=='pro'){
+                $strconf='conf_pro';  
+            }else{
+                 $strconf='conf_'.self::env(); 
+            }
+             
             $conf=(array)$config->$strconf;
             return $conf;
 
