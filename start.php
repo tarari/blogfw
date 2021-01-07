@@ -11,8 +11,7 @@
         $sql=file_get_contents($argv[1]);
     }
     
-    var_dump($conf);
-    die;
+   
 
     define('DSN',$conf['driver'].':host='.$conf['dbhost'].';dbname='.$conf['dbname']);
     define('USR',$conf['dbuser']);
