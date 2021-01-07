@@ -4,7 +4,13 @@
     require __DIR__.'/vendor/autoload.php';
     
     use App\App;
-    $conf=App::init();
+    if($argv[1]=='pro'){
+        $conf=App::init('pro');
+        $sql=file_get_contents($argv[2]);
+    }else{
+        $sql=file_get_contents($argv[1]);
+    }
+    
     var_dump($conf);
     die;
 
@@ -14,7 +20,7 @@
 
     $db=new \PDO(DSN,USR,PWD);
     
-    $sql=file_get_contents($argv[1]);
+   
     try{
         $db->exec($sql);
     }
