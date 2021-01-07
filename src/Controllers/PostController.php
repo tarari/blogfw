@@ -13,28 +13,37 @@
         }
 
         public function index(){
-                //task list for user
+                //post list for user
 
-                //$tasks=$this->selectAll();
+                //$posts=$this->select('posts');
                 $this->render();
         }
 
         public function new(){
             $user=$this->session->get('user');
             $form=new FormBuilder();
+            $form->open(BASE.'post/add')
+                ->label('Title')
+                ->input('text','title')
+                ->label('Contents')
+                ->textarea('body','editor')
+                ->submit('Add post')
+                ->close();
            // $form->label('username')->input('username');
-            $this->render(['user'=>$user],'newtask');
+            $this->render(['user'=>$user,'form'=>$form],'newpost');
         }
 
         public function add(){
-            $description=filter_input(INPUT_POST,'description',FILTER_SANITIZE_STRING);
-            $datetime=filter_input(INPUT_POST,'due_date',FILTER_SANITIZE_SPECIAL_CHARS);
-            $id=$this->session->get('user')['id'];
+            $title=filter_input(INPUT_POST,'title',FILTER_SANITIZE_STRING);
+            $body=filter_input(INPUT_POST,'body',FILTER_SANITIZE_STRING);
+            $createdAt=date('Y-m-d H:i:s', time());
+            $editor=$this->session->get('user')['id'];
+            
             $db=$this->getDB();
-            if($db->insert('tasks',['description'=>$description,'user'=>$id,'due_date'=>$datetime])){
+            if($db->insert('posts',['title'=>$title,'body'=>$body,'editor'=>$editor,'createdAt'=>$createdAt])){
                 header('Location:'.BASE.'user/dashboard');
             }else{
-                header('Location:'.BASE.'task/new');
+                header('Location:'.BASE.'post/new');
             }
         }
         public function edit($id){
@@ -61,4 +70,13 @@
             $user=$this->session->get('user');
             $this->getDB()->remove('tasks',$id);
         }
+        public function show(){
+            $params=$this->request->getParams();
+            
+            $post=$this->getDB()->selectWhere('posts',['title','body'],$params);
+            $this->render(['data'=>$post],'showpost');
+            
+        }
+
+        
     }

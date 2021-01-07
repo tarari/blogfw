@@ -4,3 +4,16 @@
 .card{
     width: 400px;
 }
+.editor{
+    width: 800px;
+}
+
+.post{
+    border:1px solid green;
+    margin:3px;
+
+}
+.list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

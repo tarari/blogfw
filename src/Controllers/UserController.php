@@ -14,7 +14,7 @@
        
        //funcions de render
         function login(){
-            $user=$this->session->get('user');
+            
             $form=$this->createForm();
             $form->open(BASE.'user/log')
                 ->label('Email:')
@@ -26,8 +26,7 @@
                 ->close();
 
             $this->render([
-                'form'=>$form,
-                'user'=>$user],'login');
+                'form'=>$form],'login');
         }
         /**
          * renders user's dashboard
@@ -36,7 +35,7 @@
          */
         function dashboard(){  
             $user=$this->session->get('user');
-            $data=$this->getDB()->selectWhereWithJoin('posts','users',['posts.id','posts.title'],'user','id',['users.username',$user['username']]);
+            $data=$this->getDB()->selectWhereWithJoin('posts','users',['posts.id','posts.title'],'editor','id',['users.username',$user['username']]);
             $this->render(['user'=>$user,'data'=>$data],'dashboard');
         }
         public function register(){
@@ -53,10 +52,9 @@
                 ->csrf($this->session->get('csrf-token'))
                 ->submit('Sign up')
                 ->close();
-            $user=$this->session->get('user');
+            //$user=$this->session->get('user');
             $this->render([
-                'form'=>$form,
-                'user'=>$user],'register');
+                'form'=>$form],'register');
         }
         public function profile(){
             $user=$this->session->get('user');

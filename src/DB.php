@@ -67,6 +67,30 @@
                 return $rows;
             }
     
+            function selectWhere($table,array $fields=null,array $conds=null):array
+            {
+                if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+                if (is_array($conds)){
+                
+                    foreach($conds as $key=>$value){
+                        $condition="{$key}='{$value}'";
+                    }
+                
+                }
+                
+                $sql="SELECT {$columns} FROM {$table} WHERE {$condition}";
+               
+                $stmt=self::$instance->prepare($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
+                return $rows;
+            }
+            
             function selectAllWithJoin($table1,$table2,array $fields=null,string $join1,string $join2):array
             {
                 if (is_array($fields)){

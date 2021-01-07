@@ -1,7 +1,7 @@
 <?php
 
     namespace App;
-    use App\FormFieldsBuilder;
+    
 
     class FormBuilder
     {
@@ -28,9 +28,9 @@
             return $this;
         }   
 
-        public function textarea($name, $value =null) {
+        public function textarea($name, $id, $value =null) {
             $value=$value??'';
-            $this->elements[] = "<textarea name=\"$name\" id=\"$name\" >$value</textarea>";
+            $this->elements[] = "<textarea name=\"$name\" id=\"$id\" >$value</textarea>";
             return $this;
         }
         public function submit($value=null){
