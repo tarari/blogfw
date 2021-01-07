@@ -13,6 +13,9 @@ namespace App;
             if(!isset($_SERVER['SERVER_NAME'])){
                 return 'dev';
             }
+            if ($_SERVER['SERVER_ADDR']!="127.0.0.1"){
+                return 'pro';
+            }
             $ipAddress=gethostbyname($_SERVER['SERVER_NAME']);
             if($ipAddress=='127.0.0.1'){
                 return 'dev';
