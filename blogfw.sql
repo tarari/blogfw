@@ -28,7 +28,7 @@ CREATE TABLE `posts` (
 
 CREATE TABLE `tags` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`name` varchar(255) NOT NULL AUTO_INCREMENT,
+	`name` varchar(255) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -41,8 +41,8 @@ CREATE TABLE `posts_has_tags` (
 CREATE TABLE `comments` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`comment` TEXT NOT NULL,
-	`post` INT NOT NULL AUTO_INCREMENT,
-	`user` INT NOT NULL AUTO_INCREMENT,
+	`post` INT NOT NULL,
+	`user` INT NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
