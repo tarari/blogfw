@@ -3,7 +3,9 @@ var show_mesg=function(str){
     $('#message').html('<p>'+str+'</p>');
     setTimeout(function(){$('#message').hide();},6000);
     };
-    
+var add_tag=function(){
+    $('#tags').show()
+}
 function remove(id){
     //var data=Object.assign({}, getRow(id));
     //var dataString=JSON.stringify(data);
@@ -59,6 +61,9 @@ function getRow(id){
             });
         }
     $(document).ready(function(){
+        $('#tags').on("keypress", function(e) {
+        
+        });
         $('.edit').click(function(e){
             console.log(e);
             $('#row').attr('editable',true);

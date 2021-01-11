@@ -18,9 +18,9 @@
             $form=$this->createForm();
             $form->open(BASE.'user/log')
                 ->label('Email:')
-                ->input('email','email')
+                ->input('email','email',['class'=>'form-control mb-3'])
                 ->label('Password:')
-                ->input('password','passw')
+                ->input('password','passw',['class'=>'form-control mb-3'])
                 ->csrf($this->session->get('csrf-token'))
                 ->submit('Sign')
                 ->close();
@@ -42,13 +42,13 @@
             $form=$this->createForm();
             $form->open(BASE.'user/reg')
                 ->label('Username:')
-                ->input('text','username')
+                ->input('text','username',['class'=>'form-control mb-3'])
                 ->label('Email:')
-                ->input('email','email')
+                ->input('email','email',['class'=>'form-control mb-3'])
                 ->label('Password:')
-                ->input('password','passw')
+                ->input('password','passw',['class'=>'form-control mb-3'])
                 ->label('Repeat password:')
-                ->input('password','passw2')
+                ->input('password','passw2',['class'=>'form-control mb-3'])
                 ->csrf($this->session->get('csrf-token'))
                 ->submit('Sign up')
                 ->close();

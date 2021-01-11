@@ -6,21 +6,18 @@
         <script>
         tinymce.init({
             selector: '#editor',
-            toolbar_mode: 'floating'
+            width:'100%'
         });
     </script>
-    <main>
-    <div class="container">   
-        
-            <div class="editor">
-
-                <?=$form;?>
-            </div>
-         
-    </div>
+    <main class="container">
+            <?=$form;?>
+            
     </main>
+    <script>
+                    
+    </script>
     
-    <?php
+        <?php
 
         include 'footer.tpl.php';
         ?>

@@ -22,9 +22,15 @@
             return $this;
         }   
 
-        public function input($type, $name, $value = null) {
+        public function input($type,$name,$attr=null) {
             $value=$value??'';
-            $this->elements[] = "<input type=\"$type\" class=\"form-control mb-3\" name=\"$name\" id=\"$name\" value=\"$value\" />";
+            $str='';
+            if(is_array($attr)){
+                foreach($attr as $key=>$value){
+                    $str.="{$key}='{$value}' ";
+                }
+            }
+            $this->elements[] = "<input type=\"$type\" {$str}  name=\"$name\"   />";
             return $this;
         }   
 
