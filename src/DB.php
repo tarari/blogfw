@@ -19,7 +19,7 @@
         
        
         // Db functions
-        function insert($table,$data):bool 
+        function insert($table,$data)
         {
            if (is_array($data)){
               $columns='';$bindv='';$values=null;
@@ -32,20 +32,22 @@
                 $bindv=substr($bindv,0,-1);
                 
                 
+                //var_dump($columns,$bindv,$values);
+                
                
                 $sql="INSERT INTO {$table}({$columns}) VALUES ({$bindv})";
-                
+              
                     try{
                         $stmt=self::$instance->prepare($sql);
-                        
-                        
-                        $stmt->execute($values);
+                       
+                        $res=$stmt->execute($values);
+                       
                     }catch(\PDOException $e){
-                        echo $e->getMessage();
-                        return false;
+                        return $e->getMessage();
+                       
                     }
                 
-                return true;
+                  return true;
                 }
                 return false;
             }

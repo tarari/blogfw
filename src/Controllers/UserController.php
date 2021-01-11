@@ -38,6 +38,7 @@
             $data=$this->getDB()->selectWhereWithJoin('posts','users',['posts.id','posts.title'],'editor','id',['users.username',$user['username']]);
             $this->render(['user'=>$user,'data'=>$data],'dashboard');
         }
+
         public function register(){
             $form=$this->createForm();
             $form->open(BASE.'user/reg')
@@ -46,9 +47,9 @@
                 ->label('Email:')
                 ->input('email','email',['class'=>'form-control mb-3'])
                 ->label('Password:')
-                ->input('password','passw',['class'=>'form-control mb-3'])
+                ->input('password','passwd',['class'=>'form-control mb-3'])
                 ->label('Repeat password:')
-                ->input('password','passw2',['class'=>'form-control mb-3'])
+                ->input('password','passwd2',['class'=>'form-control mb-3'])
                 ->csrf($this->session->get('csrf-token'))
                 ->submit('Sign up')
                 ->close();
@@ -104,25 +105,25 @@
         
         public function reg(){
            
-           
             if(isset($_POST['email'])&&!empty($_POST['email'])&&
-            isset($_POST['username'])&&!empty($_POST['username'])&&
-            isset($_POST['passw'])&&!empty($_POST['passw']))
+                isset($_POST['username'])&&!empty($_POST['username'])&&
+                isset($_POST['passwd'])&&!empty($_POST['passwd']))
             {
                 
                 $email=filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
-                $passw=filter_input(INPUT_POST,'passw',FILTER_SANITIZE_STRING);
-                $passw2=filter_input(INPUT_POST,'passw2',FILTER_SANITIZE_STRING);
+                $passwd=filter_input(INPUT_POST,'passwd',FILTER_SANITIZE_STRING);
+                $passwd2=filter_input(INPUT_POST,'passwd2',FILTER_SANITIZE_STRING);
                 $username=filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
                 
-                if ($passw===$passw2){
+                if ($passwd===$passwd2){
                     
-                    $passw=password_hash($passw,PASSWORD_BCRYPT,['cost'=>4]);
+                    $passwd=password_hash($passwd,PASSWORD_BCRYPT,['cost'=>4]);
                     $data=[
-                        'email'=>$email,
+
                         'username'=>$username,
-                        'passwd'=>$passw,
                         'role'=>2,
+                        'email'=>$email,
+                        'passwd'=>$passwd,
                         'createdAt'=>date('Y-m-d H:i:s')
                     ];
                     
