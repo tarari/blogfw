@@ -1,4 +1,12 @@
-
+CREATE TABLE `posts` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`title` varchar(255) NOT NULL,
+	`body` TEXT(2048),
+	`createdAt` DATETIME NOT NULL,
+	`modifiedAt` DATETIME,
+	`user` INT,
+	PRIMARY KEY (`id`)
+);
 
 CREATE TABLE `roles` (
 	`id` INT NOT NULL AUTO_INCREMENT,
@@ -13,16 +21,6 @@ CREATE TABLE `users` (
 	`email` varchar(255) NOT NULL UNIQUE,
 	`passwd` varchar(255) NOT NULL UNIQUE,
 	`createdAt` DATETIME NOT NULL,
-	PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `posts` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`title` varchar(255) NOT NULL,
-	`body` TEXT(2048),
-	`createdAt` DATETIME NOT NULL,
-	`modifiedAt` DATETIME,
-	`user` INT,
 	PRIMARY KEY (`id`)
 );
 
@@ -46,7 +44,7 @@ CREATE TABLE `comments` (
 	PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `posts` ADD CONSTRAINT `posts_fk0` FOREIGN KEY (`user`) REFERENCES ``(``);
+ALTER TABLE `posts` ADD CONSTRAINT `posts_fk0` FOREIGN KEY (`user`) REFERENCES `users`(`id`);
 
 ALTER TABLE `users` ADD CONSTRAINT `users_fk0` FOREIGN KEY (`role`) REFERENCES `roles`(`id`);
 
