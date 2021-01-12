@@ -6,6 +6,7 @@
         <script>
         tinymce.init({
             selector: '#editor',
+            plugis: 'save',
             width:'100%'
         });
     </script>

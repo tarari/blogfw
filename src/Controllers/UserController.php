@@ -35,7 +35,7 @@
          */
         function dashboard(){  
             $user=$this->session->get('user');
-            $data=$this->getDB()->selectWhereWithJoin('posts','users',['posts.id','posts.title'],'editor','id',['users.username',$user['username']]);
+            $data=$this->getDB()->selectWhereWithJoin('posts','users',['posts.id','posts.title'],'user','id',['users.username',$user['username']]);
             $this->render(['user'=>$user,'data'=>$data],'dashboard');
         }
 

@@ -47,30 +47,34 @@
                 $ar_tag=explode(',',$tags);
                 }
             $db=$this->getDB();
+           // $db->beginTransaction();
             try{
-                $db->beginTransaction();
+                
                 $db->insert('posts',
                 ['title'=>$title,
                 'body'=>$body,
-                'editor'=>$editor,
+                'user'=>$editor,
                 'createdAt'=>$createdAt]);
                 $post=$db->lastInsertId();
+                var_dump($post);
                 foreach($ar_tag as $tag){
-                    $db->insert('tags',['name'=>$tag]);
-                    $idtag=$db->lastInsertId();
-                    $sql="INSERT INTO 'posts_has_tags' VALUES(?,?)";
-                    $stmt=$db->prepare($sql);
-                    $stmt->bindValue(1, $post, \PDO::PARAM_INT);
-                    $stmt->bindValue(2, $idtag, \PDO::PARAM_INT);
-                    $stmt->execute();
-                    //$db->insert('posts_has_tags',['post'=>$post,'tag'=>$idtag]);
-                   //var_dump('')
+                    try{
+                       // $db->beginTransaction();
+                        $db->insert('tags',['name'=>$tag]);
+                        $idtag=$db->lastInsertId();
+                        var_dump($idtag);
+                        
+                        $db->insert('posts_has_tags',['tag'=>$idtag,'post'=>$post]);
+//$db->commit();
+                    }catch(\PDOException $e){
+                        echo $e->getMessage();
+                    }
                 }
-                $db->commit();
+                
                 header('Location:'.BASE.'user/dashboard');
             }
             catch(\PDOException $e){
-                $db->rollBack();
+        
                 header('Location:'.BASE.'post/new');
             }
             
@@ -100,7 +104,7 @@
             //recollim dades passades per ajax
             $id=$_POST['id'];
             $user=$this->session->get('user');
-            $this->getDB()->remove('tasks',$id);
+            $this->getDB()->remove('posts',$id);
         }
         public function show(){
             $params=$this->request->getParams();

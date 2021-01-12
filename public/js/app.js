@@ -10,7 +10,7 @@ function remove(id){
     //var data=Object.assign({}, getRow(id));
     //var dataString=JSON.stringify(data);
 
-    URL=window.location.origin+App.url.base+'task/remove';
+    URL=window.location.origin+App.url.base+'post/remove';
     console.log(id);
     $.ajax({
         type: 'POST',
