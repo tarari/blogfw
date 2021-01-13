@@ -14,7 +14,7 @@
                     
                        echo '<article class="post mb-3"><h2>'.
                        '<a href="'.BASE.'post/show/id/'.$row['id'].'">'.$row['title'].'</a></h2><br>'. 
-                       htmlspecialchars($row['body']).'<h5><a href="'.BASE.'post/comment/id/'.$row['id'].'">Comment</a></h5></article>';
+                       stripslashes($row['body']).'<h5><a href="'.BASE.'post/comment/id/'.$row['id'].'">Comment</a></h5></article>';
                     } 
             }
             else{

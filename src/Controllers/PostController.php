@@ -14,7 +14,6 @@
 
         public function index(){
                 //post list for user
-
                 //$posts=$this->select('posts');
                 $this->render();
         }
@@ -37,7 +36,7 @@
 
         public function add(){
             $title=filter_input(INPUT_POST,'title',FILTER_SANITIZE_STRING);
-            $body=filter_input(INPUT_POST,'body',FILTER_SANITIZE_STRING);
+            $body=stripslashes(filter_input(INPUT_POST,'body'));
             $createdAt=date('Y-m-d H:i:s', time());
             $tags=filter_input(INPUT_POST,'tags',FILTER_SANITIZE_STRING);
             
@@ -56,13 +55,13 @@
                 'user'=>$editor,
                 'createdAt'=>$createdAt]);
                 $post=$db->lastInsertId();
-                var_dump($post);
+               // var_dump($post);
                 foreach($ar_tag as $tag){
                     try{
                        // $db->beginTransaction();
                         $db->insert('tags',['name'=>$tag]);
                         $idtag=$db->lastInsertId();
-                        var_dump($idtag);
+                       // var_dump($idtag);
                         
                         $db->insert('posts_has_tags',['tag'=>$idtag,'post'=>$post]);
 //$db->commit();
@@ -85,7 +84,7 @@
         public function edit($id){
             $user=$this->session->get('user');
             $task=$this->getDB()->selectWhereWithJoin('posts','users',
-                ['posts.body'],'tasks.user','users.id',['tasks.id'=>$id]);
+                ['posts.body'],'posts.user','users.id',['tasks.id'=>$id]);
             $this->render(['user'=>$user],'edittask');
         
         }
