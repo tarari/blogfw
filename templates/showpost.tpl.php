@@ -7,8 +7,8 @@ include 'header.tpl.php';
     <?php
         if ($data){
             
-            echo '<h1>'.htmlspecialchars($data[0]['title']).'</h1>';
-            echo htmlspecialchars($data[0]['body']);
+            echo '<h1>'.stripslashes($data[0]['title']).'</h1>';
+            echo stripslashes($data[0]['body']);
         }
     ?>
     </article>

@@ -3,6 +3,7 @@
     namespace App;
 
 use App\Controllers\ErrorController;
+use App\Error;
 
 class DB extends \PDO{
         static $instance;
@@ -41,12 +42,12 @@ class DB extends \PDO{
               
                     try{
                         $stmt=self::$instance->prepare($sql);
-                       
+  
                         $res=$stmt->execute($values);
                         
                        
                     }catch(\PDOException $e){
-                       new ErrorController('Error register:');
+                       new Error('Error registering:');
                        
                     }
                 
