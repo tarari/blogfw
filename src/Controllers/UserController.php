@@ -5,6 +5,7 @@
     use App\Controller;
     use App\Session;
     use App\Request;
+    use App\Error;
 
     class UserController extends Controller
     {
@@ -128,6 +129,18 @@
                     ];
                     
                     // insert en db
+                    // comprobar existencia de usuario
+                   try{
+                    $rows=$this->getDB()
+                    ->selectWhere('users',$data,['username'=>$data['username']]);
+                       if(isset($rows)){
+                        throw new Error('User yet defined');
+                    }
+                   }catch(Error $e){
+                        return $e->getError();
+                   }
+                    
+                    //$phantom_user
                     if ($this->getDB()->insert('users',$data)){
                         header('Location:'.BASE);
                     }

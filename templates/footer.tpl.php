@@ -1,4 +1,11 @@
-<div class="message"><p></p></div>
+<?php
+  if (isset($msg)){
+    echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
+    echo $msg;
+    echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+    echo '</button></div>';
+  }
+?>
 
 <footer class="mastfoot mt-auto">
     <div class="inner">
